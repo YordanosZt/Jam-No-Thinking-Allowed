@@ -1,0 +1,210 @@
+[gd_scene load_steps=17 format=3 uid="uid://b18ap27ptek3f"]
+
+[ext_resource type="PackedScene" uid="uid://bs2ci5s2xsobh" path="res://scenes/player.tscn" id="1_cvbm3"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_it23o"]
+[ext_resource type="PackedScene" uid="uid://pb763qimgx4h" path="res://scenes/obstacle_normal.tscn" id="2_qcodu"]
+[ext_resource type="Script" path="res://scripts/obstacle_normal_spawner.gd" id="3_myoex"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_35kgm"]
+[ext_resource type="Script" path="res://scripts/obstacle_laser_spawner.gd" id="4_ydsh8"]
+[ext_resource type="PackedScene" uid="uid://c0vg4jc24xjla" path="res://scenes/obstacle_laser.tscn" id="5_e0o10"]
+[ext_resource type="Script" path="res://scripts/obstacle_basic_spawner.gd" id="6_rupj6"]
+[ext_resource type="PackedScene" uid="uid://sfob7lxk1mvt" path="res://scenes/obstacle_basic.tscn" id="7_tkcbb"]
+[ext_resource type="Texture2D" uid="uid://csivs0rvc2hry" path="res://Sprites/parallax/background_1.png" id="9_nd08h"]
+[ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="11_was2d"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a86ka"]
+
+[sub_resource type="Curve2D" id="Curve2D_wyuxq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -320, -192, 0, 0, 0, 0, 480, -192, 0, 0, 0, 0, 480, 288, 0, 0, 0, 0, -320, 288, 0, 0, 0, 0, -320, -192)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_ywdc3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -448, -320, 0, 0, 0, 0, 512, -320, 0, 0, 0, 0, 512, 320, 0, 0, 0, 0, -448, 320, 0, 0, 0, 0, -448, -320)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_oip2e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -448, -320, 0, 0, 0, 0, 512, -320, 0, 0, 0, 0, 512, 320, 0, 0, 0, 0, -448, 320, 0, 0, 0, 0, -448, -320)
+}
+point_count = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kfdu"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("stay_time_label")]
+script = ExtResource("1_it23o")
+stay_time_label = NodePath("HUD/StayTime")
+
+[node name="BG" type="ColorRect" parent="."]
+offset_left = -488.0
+offset_top = -344.0
+offset_right = 568.0
+offset_bottom = 392.0
+color = Color(0, 0, 0, 1)
+
+[node name="Parallax" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax"]
+position = Vector2(0, -80)
+texture = ExtResource("9_nd08h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax"]
+position = Vector2(256, -80)
+texture = ExtResource("9_nd08h")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-256, -80)
+texture = ExtResource("9_nd08h")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax"]
+position = Vector2(0, 136)
+texture = ExtResource("9_nd08h")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax"]
+position = Vector2(256, 136)
+texture = ExtResource("9_nd08h")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax"]
+position = Vector2(-256, 136)
+texture = ExtResource("9_nd08h")
+
+[node name="Player" parent="." instance=ExtResource("1_cvbm3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1)
+zoom = Vector2(2, 2)
+script = ExtResource("4_35kgm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 164)
+shape = SubResource("WorldBoundaryShape2D_a86ka")
+
+[node name="ObstacleNormalSpawnerPath" type="Path2D" parent="."]
+position = Vector2(-64, -64)
+scale = Vector2(1.2, 1.33333)
+curve = SubResource("Curve2D_wyuxq")
+script = ExtResource("3_myoex")
+obstacle_NORMAL = ExtResource("2_qcodu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ObstacleNormalSpawnerPath"]
+position = Vector2(-320, -192)
+
+[node name="TimeBetweenSpawn" type="Timer" parent="ObstacleNormalSpawnerPath"]
+autostart = true
+
+[node name="ObstacleLaserSpawnerPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ywdc3")
+script = ExtResource("4_ydsh8")
+laser = ExtResource("5_e0o10")
+
+[node name="PathPoint1" type="PathFollow2D" parent="ObstacleLaserSpawnerPath"]
+position = Vector2(-448, -320)
+
+[node name="PathPoint2" type="PathFollow2D" parent="ObstacleLaserSpawnerPath"]
+position = Vector2(-448, -320)
+
+[node name="Timer" type="Timer" parent="ObstacleLaserSpawnerPath"]
+wait_time = 5.0
+autostart = true
+
+[node name="ObstacleBasicSpawnerPath" type="Path2D" parent="." node_paths=PackedStringArray("player")]
+curve = SubResource("Curve2D_oip2e")
+script = ExtResource("6_rupj6")
+basic = ExtResource("7_tkcbb")
+player = NodePath("../Player")
+
+[node name="PathPoint" type="PathFollow2D" parent="ObstacleBasicSpawnerPath"]
+position = Vector2(-448, -320)
+
+[node name="Timer" type="Timer" parent="ObstacleBasicSpawnerPath"]
+wait_time = 0.5
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="StayTime" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_was2d")
+
+[node name="Panel" type="Panel" parent="HUD/GameOverPanel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kfdu")
+
+[node name="Label" type="Label" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="GameOverStayTimeLabel" type="Label" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 160.0
+offset_bottom = 248.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Time Survived: 00"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.5
+offset_top = -44.0
+offset_right = 207.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartBtn" type="Button" parent="HUD/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart"
+
+[node name="QuitBtn" type="Button" parent="HUD/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[connection signal="timeout" from="ObstacleNormalSpawnerPath/TimeBetweenSpawn" to="ObstacleNormalSpawnerPath" method="_on_time_between_spawn_timeout"]
+[connection signal="timeout" from="ObstacleLaserSpawnerPath/Timer" to="ObstacleLaserSpawnerPath" method="_on_timer_timeout"]
+[connection signal="timeout" from="ObstacleBasicSpawnerPath/Timer" to="ObstacleBasicSpawnerPath" method="_on_timer_timeout"]
+[connection signal="pressed" from="HUD/GameOverPanel/VBoxContainer/RestartBtn" to="HUD/GameOverPanel" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="HUD/GameOverPanel/VBoxContainer/QuitBtn" to="HUD/GameOverPanel" method="_on_quit_btn_pressed"]

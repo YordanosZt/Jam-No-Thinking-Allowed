@@ -1,0 +1,124 @@
+{
+	"categories": [
+		{
+			"uuid": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "747dbbc1-7aee-4e8c-b8d1-c8ef64ef4c17",
+			"title": "Todo",
+			"tasks": [
+				"5085945d-783a-4a55-b76c-4957377539f0",
+				"3547d514-0c06-4816-9bb8-3664283d502a"
+			]
+		},
+		{
+			"uuid": "1eabc8a3-7676-4e49-9b81-7e4c96e2a5df",
+			"title": "Doing",
+			"tasks": [
+				"2a4b423f-c3c7-4d07-83ad-ff0cbbe6ab0e"
+			]
+		},
+		{
+			"uuid": "da8945b5-ef81-4b34-a378-935c2cddcac4",
+			"title": "Done",
+			"tasks": [
+				"1c57a9cc-d26b-4ae3-a189-86700e712d14",
+				"b49b7e80-fa06-48db-a29e-ae003eee8790",
+				"b45df0f1-1962-49ea-8cc5-59723b961db1",
+				"524a9c5f-98d1-4366-8e1e-bb5ecff89c7a",
+				"f1ee089c-73a7-4bd0-a9f3-61ede40b6815",
+				"1b809c57-817f-47c8-b51b-6b88f11513d5",
+				"e8f5e0f0-884f-477b-96e2-7dc73c141eab"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "1c57a9cc-d26b-4ae3-a189-86700e712d14",
+			"title": "Normal Obstacle",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "b49b7e80-fa06-48db-a29e-ae003eee8790",
+			"title": "Laser Obstacle",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "b45df0f1-1962-49ea-8cc5-59723b961db1",
+			"title": "Basic Obstacle",
+			"description": "- Scale variation\n- Speed variation",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "5085945d-783a-4a55-b76c-4957377539f0",
+			"title": "Bug Fixes",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "3547d514-0c06-4816-9bb8-3664283d502a",
+			"title": "Visuals",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "e8f5e0f0-884f-477b-96e2-7dc73c141eab",
+			"title": "Audio",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "524a9c5f-98d1-4366-8e1e-bb5ecff89c7a",
+			"title": "Player Health",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "f1ee089c-73a7-4bd0-a9f3-61ede40b6815",
+			"title": "Stay Time UI",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "1b809c57-817f-47c8-b51b-6b88f11513d5",
+			"title": "Game Feel",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		},
+		{
+			"uuid": "2a4b423f-c3c7-4d07-83ad-ff0cbbe6ab0e",
+			"title": "UI",
+			"description": "",
+			"category": "b9362d8f-30e9-4302-895e-e6a8f0255def",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"747dbbc1-7aee-4e8c-b8d1-c8ef64ef4c17"
+			],
+			[
+				"1eabc8a3-7676-4e49-9b81-7e4c96e2a5df"
+			],
+			[
+				"da8945b5-ef81-4b34-a378-935c2cddcac4"
+			]
+		]
+	}
+}

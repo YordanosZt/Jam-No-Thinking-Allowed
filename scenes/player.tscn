@@ -1,0 +1,180 @@
+[gd_scene load_steps=20 format=3 uid="uid://bs2ci5s2xsobh"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fnsgn"]
+[ext_resource type="Script" path="res://scripts/player_gun.gd" id="2_6blou"]
+[ext_resource type="PackedScene" uid="uid://brmmb2tfg4gew" path="res://scenes/bullet.tscn" id="3_nwlr2"]
+[ext_resource type="Script" path="res://scripts/player_hurt_box.gd" id="4_0yx4e"]
+[ext_resource type="AudioStream" uid="uid://dlwrl5cemmlvs" path="res://audio/shoot.wav" id="5_w6oj4"]
+[ext_resource type="AudioStream" uid="uid://iocdf5u0n2wv" path="res://audio/Hit_Hurt.wav" id="6_j2p5h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_adqk4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5wt41"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r737"]
+radius = 9.0
+height = 36.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1858s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6y0t1"]
+radius = 9.0
+height = 36.0
+
+[sub_resource type="Gradient" id="Gradient_vg521"]
+colors = PackedColorArray(0.619608, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3igl8"]
+gradient = SubResource("Gradient_vg521")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nllqs"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 1, 1)
+angle_min = -90.0
+angle_max = 90.0
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_3igl8")
+
+[sub_resource type="Gradient" id="Gradient_8wc6m"]
+offsets = PackedFloat32Array(0.493671, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pg4qq"]
+gradient = SubResource("Gradient_8wc6m")
+
+[sub_resource type="Curve" id="Curve_1cpn7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5vnf1"]
+curve = SubResource("Curve_1cpn7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kpij2"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 0.5
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_5vnf1")
+color_ramp = SubResource("GradientTexture1D_pg4qq")
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_fnsgn")
+fall_acceleration = 400.0
+hover_acceleration = 400.0
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals"]
+modulate = Color(1, 0.266667, 0.270588, 1)
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(18, 18)
+mesh = SubResource("CapsuleMesh_adqk4")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Visuals"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-3, -9)
+scale = Vector2(3.5, 2.5)
+mesh = SubResource("CapsuleMesh_5wt41")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Visuals"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(3, -9)
+scale = Vector2(3.5, 2.5)
+mesh = SubResource("CapsuleMesh_5wt41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4r737")
+
+[node name="Gun" type="Marker2D" parent="."]
+script = ExtResource("2_6blou")
+bullet = ExtResource("3_nwlr2")
+
+[node name="Visual" type="Node2D" parent="Gun"]
+position = Vector2(26, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Gun/Visual"]
+scale = Vector2(2, 6)
+mesh = SubResource("BoxMesh_1858s")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Gun/Visual"]
+position = Vector2(3.5, -1.5)
+scale = Vector2(5, 3)
+mesh = SubResource("BoxMesh_1858s")
+
+[node name="FiringPoint" type="Marker2D" parent="Gun"]
+position = Vector2(32, 0)
+
+[node name="TimeBetweenFire" type="Timer" parent="Gun"]
+wait_time = 0.2
+one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_0yx4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_6y0t1")
+debug_color = Color(0.814895, 0.36826, 0.467278, 0.42)
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="HealthLabel" type="Label" parent="PlayerHUD"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.878431, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Health: 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HurtOverlay" type="ColorRect" parent="PlayerHUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.392157, 0.321569, 0.305882)
+
+[node name="HoverParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 19)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_nllqs")
+
+[node name="HitParticles" type="GPUParticles2D" parent="."]
+self_modulate = Color(1, 0.266667, 0.270588, 1)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_kpij2")
+one_shot = true
+explosiveness = 1.0
+
+[node name="GunShotAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_w6oj4")
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_j2p5h")
+
+[connection signal="timeout" from="Gun/TimeBetweenFire" to="Gun" method="_on_time_between_fire_timeout"]
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]

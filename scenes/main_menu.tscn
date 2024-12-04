@@ -1,0 +1,219 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8ipssrca21vk"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_y0ogl"]
+[ext_resource type="PackedScene" uid="uid://b18ap27ptek3f" path="res://scenes/game.tscn" id="2_04017"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vod1e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jehjk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_17gb3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pw8yb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ckm0r"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_y0ogl")
+game_scene = ExtResource("2_04017")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -171.0
+offset_top = -137.0
+offset_right = 1382.0
+offset_bottom = 857.0
+color = Color(0, 0, 0, 1)
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(152, 360)
+rotation = -0.55466
+scale = Vector2(6.73297, 6.73297)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals"]
+modulate = Color(0.141176, 0.592157, 1, 1)
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(16, 16)
+mesh = SubResource("CapsuleMesh_vod1e")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Visuals"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-3, -7)
+scale = Vector2(4, 4)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="Visuals"]
+position = Vector2(-3, -7)
+scale = Vector2(2, 2)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Visuals"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(3, -7)
+scale = Vector2(4, 4)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="Visuals"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(2, -10)
+rotation = -0.738484
+scale = Vector2(4, 1)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D5" type="MeshInstance2D" parent="Visuals"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-2, -10)
+rotation = -2.35619
+scale = Vector2(4, 1)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="Visuals"]
+position = Vector2(3, -7)
+scale = Vector2(2, 2)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D8" type="MeshInstance2D" parent="Visuals"]
+position = Vector2(95.9989, 70.6566)
+scale = Vector2(8, 8)
+mesh = SubResource("BoxMesh_17gb3")
+
+[node name="MeshInstance2D9" type="MeshInstance2D" parent="Visuals"]
+position = Vector2(80.2665, 73.4894)
+rotation = 0.934488
+scale = Vector2(8, 8)
+mesh = SubResource("BoxMesh_17gb3")
+
+[node name="MeshInstance2D10" type="MeshInstance2D" parent="Visuals"]
+position = Vector2(91.9042, 86.2903)
+rotation = 0.432826
+scale = Vector2(8, 8)
+mesh = SubResource("BoxMesh_17gb3")
+
+[node name="Line2D" type="Line2D" parent="Visuals"]
+position = Vector2(111.412, 18.7053)
+rotation = -2.8732
+points = PackedVector2Array(27.3513, 29.1069, -81.0475, -90.7403)
+default_color = Color(1, 0.337255, 0.262745, 1)
+
+[node name="Visuals2" type="Node2D" parent="."]
+position = Vector2(32, 568)
+rotation = 0.985597
+scale = Vector2(6.73297, 6.73297)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals2"]
+modulate = Color(0.141176, 0.592157, 1, 1)
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(16, 16)
+mesh = SubResource("CapsuleMesh_vod1e")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Visuals2"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-3, -7)
+scale = Vector2(4, 4)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="Visuals2"]
+position = Vector2(-3, -7)
+scale = Vector2(2, 2)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Visuals2"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(3, -7)
+scale = Vector2(4, 4)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="Visuals2"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(2, -10)
+rotation = -0.738484
+scale = Vector2(4, 1)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D5" type="MeshInstance2D" parent="Visuals2"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-2, -10)
+rotation = -2.35619
+scale = Vector2(4, 1)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="Visuals2"]
+position = Vector2(3, -7)
+scale = Vector2(2, 2)
+mesh = SubResource("BoxMesh_jehjk")
+
+[node name="Visuals" type="Node2D" parent="Visuals2"]
+position = Vector2(50.632, -41.994)
+rotation = -0.968207
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals2/Visuals"]
+modulate = Color(1, 0.266667, 0.270588, 1)
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(18, 18)
+mesh = SubResource("CapsuleMesh_pw8yb")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Visuals2/Visuals"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-3, -9)
+scale = Vector2(3.5, 2.5)
+mesh = SubResource("CapsuleMesh_ckm0r")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Visuals2/Visuals"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(3, -9)
+scale = Vector2(3.5, 2.5)
+mesh = SubResource("CapsuleMesh_ckm0r")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 1152.0
+offset_bottom = 256.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "JUST SURVIVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 408.0
+offset_top = 256.0
+offset_right = 728.0
+offset_bottom = 428.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 560.0
+offset_top = 592.0
+offset_right = 715.0
+offset_bottom = 693.0
+text = "A and D to strafe
+W or Space to hover
+Mouse to aim
+Left click to shoot"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 560.0
+offset_top = 544.0
+offset_right = 715.0
+offset_bottom = 578.0
+theme_override_font_sizes/font_size = 24
+text = "Controlls!!"
+
+[connection signal="pressed" from="VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
